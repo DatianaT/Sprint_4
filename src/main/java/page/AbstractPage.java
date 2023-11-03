@@ -1,6 +1,7 @@
 package page;
 
 import org.openqa.selenium.WebDriver;
+
 public abstract class AbstractPage {
     final protected WebDriver driver;
 

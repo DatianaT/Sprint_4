@@ -7,6 +7,8 @@ import org.openqa.selenium.WebDriver;
 public class CreateOrderPage extends AbstractPage {
     public CreateOrderPage(WebDriver driver) {
         super(driver);
+
+        driver.findElement(By.xpath(".//div[text()='Для кого самокат']"));
     }
 
     public CreateOrderPage fillFirstName(String firstName) {
