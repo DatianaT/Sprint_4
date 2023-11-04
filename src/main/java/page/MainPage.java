@@ -4,10 +4,16 @@ import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
+import static org.hamcrest.CoreMatchers.containsString;
+import static org.hamcrest.MatcherAssert.assertThat;
 
 public class MainPage extends AbstractPage {
     private final By headerLocator = By.className("Home_Header__iJKdX");
     private final By questionsLocator = By.className("accordion");
+
+    //private final By expectedText = (By.xpath(".//div[text()='Для кого самокат']"));
+    private String expectedText = "Для кого самокат";
+
 
     public MainPage(WebDriver driver) {
         super(driver);
@@ -29,8 +35,13 @@ public class MainPage extends AbstractPage {
 
     public CreateOrderPage toOrderBySecondButton() {
         driver.findElement(By.className("Button_Button__ra12g")).click();
+        String actualText = driver.findElement(By.xpath(".//div[text()='Для кого самокат']")).getText();
+        assertThat("Ожидается открытие страницы", actualText, containsString(expectedText));
         return new CreateOrderPage(driver);
+
     }
+
+
 
     public MainPage scrollToQuestions() {
         ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView();", driver.findElement(questionsLocator));

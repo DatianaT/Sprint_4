@@ -1,8 +1,8 @@
 package page;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.Keys;
 
 public class AboutRentPage extends AbstractPage {
     private final By startRentFieldLocator = By.xpath(".//input[@placeholder='* Когда привезти самокат']"); // Календарь
@@ -10,7 +10,15 @@ public class AboutRentPage extends AbstractPage {
     private final By commentFieldLocator = By.xpath(".//input[@placeholder='Комментарий для курьера']");
 
     private final By rentDurationLocator = By.xpath(".//div[@class= 'Dropdown-placeholder' and text()='* Срок аренды']"); // Срок аренды
+    private final By selectRentalPeriod = By.xpath(".//div[@class='Dropdown-option' and text()='двое суток']");
+
+    private final By chooseColorsBlack = By.xpath(".//label[text()='чёрный жемчуг']");
+    private final By chooseColorsGrey = By.xpath(".//label[text()='серая безысходность']");
     private final By placeOrderButtonLocator = By.xpath("(.//button[text()='Заказать'])[last()]");
+    private final By dataEntryFormVerification = By.xpath(".//div[@class='Order_Content__bmtHS']");
+    private final String colorBlack ="чёрный жемчуг";
+    private final String colorGray = "серая безысходность";
+
 
     public AboutRentPage(WebDriver driver) {
         super(driver);
@@ -28,8 +36,12 @@ public class AboutRentPage extends AbstractPage {
         driver.findElement(By.xpath(".//div[@class='Dropdown-option' and text()='" + rentDurationValue + "']")).click();
 
         // Choose color
-        driver.findElement(By.xpath(".//label[text()='" + colorName + "']")).click();
-
+        if(colorName.equals(colorBlack)) {
+            driver.findElement(chooseColorsBlack).click();
+        }
+        else if(colorName.equals(colorGray)) {
+            driver.findElement(chooseColorsGrey).click();
+        }
         driver.findElement(commentFieldLocator).sendKeys("Спасибо");
         return this;
     }

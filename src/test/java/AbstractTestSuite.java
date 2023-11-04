@@ -1,7 +1,7 @@
 import io.github.bonigarcia.wdm.WebDriverManager;
 import io.github.cdimascio.dotenv.Dotenv;
-import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.AfterEach;
 import org.openqa.selenium.WebDriver;
 
 abstract class AbstractTestSuite {
@@ -13,8 +13,8 @@ abstract class AbstractTestSuite {
         Dotenv dotenv = Dotenv.configure().ignoreIfMissing().load();
         var url = dotenv.get("URL", "");
 
-        wdm = WebDriverManager.chromedriver();
-//        wdm = WebDriverManager.firefoxdriver();
+//        wdm = WebDriverManager.chromedriver();
+        wdm = WebDriverManager.firefoxdriver();
 
         driver = wdm.create();
         driver.get(url);
