@@ -35,10 +35,13 @@ public class MainPage extends AbstractPage {
 
     public CreateOrderPage toOrderBySecondButton() {
         driver.findElement(By.className("Button_Button__ra12g")).click();
+        return new CreateOrderPage(driver);
+
+    }
+    public CreateOrderPage checkingThatTheFormIsDisplayed(){
         String actualText = driver.findElement(By.xpath(".//div[text()='Для кого самокат']")).getText();
         assertThat("Ожидается открытие страницы", actualText, containsString(expectedText));
         return new CreateOrderPage(driver);
-
     }
 
 

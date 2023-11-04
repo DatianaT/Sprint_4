@@ -4,7 +4,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvFileSource;
 import page.MainPage;
 
-public class TestOrderSuite extends AbstractTestSuite {
+public class TestCreateNewOrderSuite extends AbstractTestSuite {
     @DisplayName("Make Order")
     @ParameterizedTest
     @CsvFileSource(resources = "orders.csv", numLinesToSkip = 1)
@@ -15,7 +15,8 @@ public class TestOrderSuite extends AbstractTestSuite {
             String metro,
             String phoneNumber,
             String rentDuration,
-            String color
+            String color,
+            String comment
     ) {
         var mainPage = new MainPage(driver);
         var orderPage = mainPage.toOrder();
@@ -27,7 +28,7 @@ public class TestOrderSuite extends AbstractTestSuite {
         orderPage.fillPhoneNumber(phoneNumber);
 
         var aboutRentPage = orderPage.next();
-        aboutRentPage.fillForm(rentDuration, color);
+        aboutRentPage.fillForm(rentDuration, color, comment);
 
         var confirmOrderPage = aboutRentPage.placeOrder();
         confirmOrderPage.confirm();
@@ -38,5 +39,6 @@ public class TestOrderSuite extends AbstractTestSuite {
     public void testMakeOrderButtonWorks() {
         var mainPage = new MainPage(driver);
         mainPage.toOrderBySecondButton();
+        mainPage.checkingThatTheFormIsDisplayed();
     }
 }

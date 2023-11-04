@@ -13,8 +13,8 @@ abstract class AbstractTestSuite {
         Dotenv dotenv = Dotenv.configure().ignoreIfMissing().load();
         var url = dotenv.get("URL", "");
 
-//        wdm = WebDriverManager.chromedriver();
-        wdm = WebDriverManager.firefoxdriver();
+        wdm = WebDriverManager.chromedriver();
+//        wdm = WebDriverManager.firefoxdriver();
 
         driver = wdm.create();
         driver.get(url);

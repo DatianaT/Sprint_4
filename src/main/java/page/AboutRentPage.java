@@ -24,7 +24,7 @@ public class AboutRentPage extends AbstractPage {
         super(driver);
     }
 
-    public AboutRentPage fillForm(String rentDurationValue, String colorName) {
+    public AboutRentPage fillForm(String rentDurationValue, String colorName, String comment) {
         // Choose rent start date
         var startRentField = driver.findElement(startRentFieldLocator);
         startRentField.click();
@@ -42,7 +42,7 @@ public class AboutRentPage extends AbstractPage {
         else if(colorName.equals(colorGray)) {
             driver.findElement(chooseColorsGrey).click();
         }
-        driver.findElement(commentFieldLocator).sendKeys("Спасибо");
+        driver.findElement(commentFieldLocator).sendKeys(comment);
         return this;
     }
 
